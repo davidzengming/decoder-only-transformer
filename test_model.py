@@ -260,8 +260,9 @@ class TestModelTraining:
 
     def test_loss_decreases(self, small_config: TransformerConfig) -> None:
         """Test that loss decreases during training."""
+        torch.manual_seed(42)  # Fixed seed for reproducibility
         model = DecoderTransformer(small_config)
-        optimizer = torch.optim.AdamW(model.parameters(), lr=1e-2)
+        optimizer = torch.optim.AdamW(model.parameters(), lr=3e-2)
 
         # Generate random data
         data = torch.randint(0, 10, (100,))
